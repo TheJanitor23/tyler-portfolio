@@ -24,7 +24,7 @@ I’m currently building real-world projects to strengthen my skills in cloud in
 ### 🪣 Static Website on Amazon S3
 - Built and deployed a static HTML/CSS website hosted on AWS S3  
 - Configured permissions, bucket policy, and static hosting  
-- [View project files](#) *(you’ll link your actual files here)*
+- [View project files](#)
 
 ## 🎓 Certifications
 - AWS Certified Cloud Practitioner (in progress)
