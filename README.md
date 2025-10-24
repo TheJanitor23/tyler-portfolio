@@ -3,6 +3,17 @@
 I'm an aspiring CloudOps professional with hands-on experience in AWS services like S3, EC2, and VPCs.  
 I’m currently building real-world projects to strengthen my skills in cloud infrastructure and automation.
 
+---
+
+## Table of Contents
+- [Skills & Tools](#-skills--tools)
+- [Highlight Projects](#-highlight-projects)
+- [Certifications](#-certifications)
+- [Connect](#-connect)
+- [Roadmap](#-roadmap-what-im-building-next)
+
+---
+
 ## 🧰 Technical Skills
 - **Cloud:** AWS (S3, EC2, VPC, Route 53, CloudFormation)
 - **Networking:** Subnetting, DNS, Firewalls
