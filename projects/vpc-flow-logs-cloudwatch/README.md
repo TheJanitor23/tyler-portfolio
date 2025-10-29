@@ -1,109 +1,65 @@
-# 🚀 AWS VPC Flow Logs & CloudWatch Monitoring Project
+🛰️ AWS VPC Flow Logs & CloudWatch Project
 
-## 🧩 Overview
-This project demonstrates my hands-on ability to **design, deploy, and monitor network traffic in AWS** using **VPC Flow Logs**, **CloudWatch**, and **EC2**.  
-The goal was to configure network monitoring and create a **custom CloudWatch alarm** that automatically triggers an **SNS notification** when abnormal network activity — such as packet rejections — occurs.
+This project demonstrates my ability to configure, analyze, and monitor network traffic in AWS using VPC Flow Logs, CloudWatch Logs, and CloudWatch Alarms — while applying real-world troubleshooting and security practices.
 
----
+Throughout this project, I worked through challenges involving SSH permissions, file ownership, and key-pair access control on Windows.
+By problem-solving through each issue, I deepened my understanding of how IAM permissions, EC2 networking, and CloudWatch metrics interact in AWS.
 
-## 🛠️ Key Objectives
-- Launch and connect to an **Amazon EC2 instance** using a properly secured `.pem` key.  
-- Configure **VPC Flow Logs** to capture accepted and rejected traffic across network interfaces.  
-- Create a **CloudWatch Log Group** and direct flow log data to it for visualization.  
-- Build a **CloudWatch metric filter and alarm** to detect spikes in rejected traffic (`RejectCount`).  
-- Integrate **Amazon SNS** for email-based alerts to ensure visibility into VPC-level security events.  
-- Test alarm responsiveness by intentionally generating **REJECT** events using `curl` and network ACL rule manipulation.
+🧩 Project Objectives
 
----
+Launch and secure an EC2 instance within a custom VPC.
 
-## 🧠 What I Learned
-- Gained a deep understanding of how **VPC Flow Logs** work at the network interface level, including **ACCEPT** vs. **REJECT** traffic logic.  
-- Learned how to use **AWS CloudWatch metrics and alarms** to translate raw logs into actionable insights.  
-- Practiced managing **IAM roles, log permissions, and SNS topics** for secure inter-service communication.  
-- Strengthened my Linux command-line skills by using tools like `ping`, `curl`, and `ssh` to test network reachability and EC2 connectivity.  
-- Enhanced my troubleshooting mindset — from **fixing key file permissions on Windows PowerShell** to diagnosing **“connection timed out” errors** and **CloudWatch alarm thresholds**.  
+Configure VPC Flow Logs to capture network traffic data.
 
----
+Create CloudWatch alarms to detect rejected network connections.
 
-## 💡 Challenges I Overcame
-This project didn’t go perfectly on the first try — and that’s exactly why it was valuable.  
-I struggled through:
-- Correcting **Windows PEM key file permissions** using advanced PowerShell commands (`icacls`, `takeown`, etc.).  
-- Understanding how **Network ACLs** and **Security Groups** interact to allow or deny traffic.  
-- Dealing with **Invalid token** SNS subscription confirmations and learning how AWS validates endpoints.  
+Integrate SNS notifications for alerting when thresholds are exceeded.
 
-Each obstacle forced me to slow down, debug methodically, and deepen my understanding of how AWS services interact — turning roadblocks into learning milestones.  
+Validate connectivity and observe traffic patterns through ACCEPT/REJECT flow log entries.
 
----
+📸 Project Screenshots
+1. EC2 Instance Setup
 
-## 📸 Demo & Evidence
+Launched an Amazon Linux EC2 instance in a public subnet with an associated key pair and security group. Configured networking and verified accessibility before tightening permissions.
 
-### 🔐 SSH Session to EC2
-Connection established via SSH after setting proper `.pem` permissions and IAM configuration.  
-Shows active EC2 instance network connectivity.
+2. SSH Session Verification
 
-![SSH Connection Successful](images/ec2-ssh-session.png)
+Connected to the EC2 instance using SSH and validated outbound connectivity with ping and curl commands.
+This confirmed proper route table configuration and Internet Gateway setup.
 
----
+3. VPC Flow Logs – ACCEPT Events
 
-### 🌐 Internet Connectivity Test
-Used `ping` and `curl` commands from within the EC2 instance to verify outbound internet access.
+Captured accepted traffic in CloudWatch, showing successful ICMP and HTTP requests from the EC2 instance to the Internet.
+These entries verify proper flow log configuration and confirm the instance’s outbound reachability.
 
-![Ping and Curl Tests](images/ping-curl-tests.png)
+4. VPC Flow Logs – REJECT Events
 
----
+Captured rejected packets after tightening security group and NACL rules.
+These REJECT entries demonstrate that my access controls were working correctly and that I could analyze network denials via CloudWatch.
 
-### 📊 VPC Flow Logs in CloudWatch
-Verified log entries showing both `ACCEPT` and `REJECT` traffic at the network interface level.
+5. CloudWatch Alarm Configuration
 
-![VPC Flow Logs in CloudWatch](images/vpc-flow-logs.png)
+Created a CloudWatch alarm to monitor the RejectCount metric within the VPCFlowLogs namespace.
+The alarm triggers when rejected packets exceed a defined threshold over a 5-minute window — turning log data into actionable alerts.
 
----
+6. SNS Notification Alert
 
-### 🚨 Custom CloudWatch Alarm
-Created a CloudWatch alarm based on the `RejectCount` metric to monitor network rejections.
+Integrated Amazon SNS to send email alerts when the CloudWatch alarm detects high rejection activity.
+Though I encountered a token validation issue during testing, this step solidified my understanding of integrating CloudWatch with SNS topics.
 
-![CloudWatch Alarm Setup](images/cloudwatch-alarm.png)
+🧠 Key Learnings & Takeaways
 
----
+Mastered VPC Flow Logs configuration and filtering to analyze network traffic.
 
-### ✉️ SNS Notification Setup
-Integrated **Amazon SNS** with CloudWatch to send email alerts when the alarm transitions into the “ALARM” state.
+Strengthened understanding of CloudWatch metrics, alarms, and alerts.
 
-![SNS Notification Configuration](images/sns-subscription.png)
+Learned to resolve complex file permission and SSH key issues in Windows PowerShell.
 
----
+Practiced least-privilege access control by refining NACLs and Security Groups.
 
-### 📧 Alarm Trigger Test
-Generated intentional `REJECT` events by modifying NACL rules and confirmed email alert delivery from SNS.
+Reinforced the value of Cloud monitoring and alert automation for proactive system management.
 
-![SNS Email Notification](images/sns-email-alert.png)
+🧾 Summary
 
----
-
-## 📊 Results
-✅ Successfully set up an **end-to-end alerting system** that emails a notification within minutes of network rejects.  
-✅ Verified **VPC Flow Logs** and **CloudWatch metrics** with live traffic data from test `curl` commands.  
-✅ Demonstrated proficiency in **AWS monitoring, alerting, and network troubleshooting workflows**.
-
----
-
-## 🧰 Technologies Used
-- **AWS Services:** EC2, VPC, CloudWatch, IAM, SNS  
-- **Tools:** PowerShell, Linux Terminal, Curl, Ping  
-- **Languages & Configs:** Bash, YAML (for alarm configuration)  
-- **Operating Systems:** Windows 11 (PowerShell) + Amazon Linux 2023 (EC2)  
-
----
-
-## 🏁 Conclusion
-This project was more than a technical setup — it was a practical deep dive into AWS networking and observability.  
-I encountered real-world issues, debugged methodically, and proved I could **design, monitor, and secure a cloud network environment end-to-end**.
-
----
-
-### ✨ Author
-**Tyler Ites**  
-📍 Denver, CO  
-📧 [tites23@gmail.com](mailto:tites23@gmail.com)  
-💼 *Aspiring CloudOps / DevOps Engineer*  
+This project simulated a real-world CloudOps workflow — from instance provisioning to logging, alerting, and troubleshooting.
+By completing it, I proved my ability to not only configure cloud infrastructure but also analyze and automate monitoring around it.
