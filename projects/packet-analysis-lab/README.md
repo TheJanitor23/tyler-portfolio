@@ -40,6 +40,10 @@ Methodology
   - When HTTP traffic was not initially visible, the capture interface was adjusted
   - 								sudo tcpdump -i any -w threat-lab-v2.pcap
 
+![Network Setup](screenshots/01-network-setup-and-routing.png)
+![tcpdump Capture](screenshots/02-packet-capture-with-tcpdump.png)
+![Capture Fix](screenshots/06-capture-fix-using-any-interface.png)
+
 ---
 
 2. Traffic Generation
@@ -52,12 +56,17 @@ Methodology
                     * `/login`
                     * `/dashboard`
 
+![Generating HTTP Traffic](screenshots/04-generating-http-traffic-curl.png)
+![Endpoint Probing](screenshots/05-probing-target-endpoints.png)
+
 ---
 
 3. Protocol Misconfiguration Test
 
 Attempting to connect to a plaintext HTTP server using HTTPS resulted in TLS errors and malformed requests, demonstrating protocol mismatch behavior and reinforcing the distinction between encrypted and unencrypted traffic.
 I went back and reconfigured my curl request to use HTTP instead of HTTPS, allowing proper communication with the server.
+
+![HTTPS Misconfiguration](screenshots/03-http-vs-https-misconfiguration.png)
 
 ---
 
@@ -71,6 +80,8 @@ Filtered HTTP traffic and observed:
 Putting what I was looking at into words:
           “A client at 10.0.2.15 is making an HTTP GET request to the /login endpoint using the curl command-line tool.”
 
+![HTTP Analysis](screenshots/07-http-get-request-analysis.png)
+
 ---
 
 5. Suspicious User-Agent Detection
@@ -81,6 +92,8 @@ Putting what I was looking at into words:
   - Identified:
   - 							User-Agent: Recon-Bot/1.0
     * This indicated automated traffic rather than just a normal browser.
+
+![Recon Bot Detection](screenshots/08-suspicious-user-agent-recon-bot.png)
 
 ---
 
@@ -95,6 +108,8 @@ Findings
 
 This behavior matches what would be seen in a:
 	- *Nmap SYN scan (-sS)
+
+![SYN Scan Detection](screenshots/09-syn-scan-nmap-detection.png)
 
 ---
 
