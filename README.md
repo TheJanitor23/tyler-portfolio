@@ -105,5 +105,3 @@ I'm an aspiring Cloud & Cybersecurity professional with hands-on experience in A
 - Google Cybersecurity
 - AWS Certified Cloud Practitioner
 - CompTIA Security+ exam scheduled for 4/5/2026
-
-## 📫 Connect With Me
